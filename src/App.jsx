@@ -33,7 +33,7 @@ export default function App() {
         {ranking.map(entry => (
           <li key={entry[1]}>
             <span>{entry[1]}:</span>
-            <span>+{entry[2]} -{entry[3]}</span>
+            <span> <a style = {{color:'Chartreuse'}}> +{entry[2]}</a> <a style={{color:'red'}}> -{entry[3]}</a></span>
           </li>
         ))}
       </ul>
