@@ -8,7 +8,7 @@ export default function App() {
   
   const upvotes = useQuery("listUV") || [];
   const downvotes = useQuery("listDV") || [];
-  const messages = useQuery("sort") || [];
+  const ranking = useQuery("sort") || [];
 
   const [newMessageText, setNewMessageText] = useState("");
   const sendMessage = useMutation("sendMessage");
@@ -29,11 +29,14 @@ export default function App() {
   return (
     <main>
       <h1>Convex Votes</h1>
-      <p className="badge">
-        <span>{name}</span>
-      </p>
-      <div>Upvotes: {upvotes.length}</div>
-      <div>Downvotes: {downvotes.length}</div>
+      <ul>
+        {ranking.map(entry => (
+          <li key={entry[1]}>
+            <span>{entry[1]}:</span>
+            <span>+{entry[2]} -{entry[3]}</span>
+          </li>
+        ))}
+      </ul>
       <form onSubmit={handleSendupvote}>
       <input
           value={newUpvoteMessageText}
